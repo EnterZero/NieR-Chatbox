@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Orbitron:wght@600&family=Roboto:wght@700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #000000;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1.5em;
+    color: #ffffff;
+    text-shadow: 0 0 1px #000000, 0 0 2px #000000;
+}
+
+#log {
+    text-shadow: none !important;
+    display: table;
+    top: 0;
+    left: 0;
+    padding: 0 10px 10px;
+    width: 100%;
+    table-layout: fixed;
+    /* position: absolute; */
+    position: column-reverse;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#log>div:before {
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    opacity: 0;
+    animation: .5s 1s forwards outerLine;
+}
+
+@keyframes outerLine {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        width: 80%;
+        height: 20px;
+        opacity: 1;
+    }
+}
+
+#log>div:before,
+#log .name:after,
+#log .message:after {
+    content: "";
+    position: absolute;
+}
+
+#log>div {
+    animation: fadeInRight 1s ease forwards, fadeOut 1s ease forwards;
+    -webkit-animation: fadeInRight 1s ease forwards, fadeOut 1s ease forwards;
+}
+
+
+#log>div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    animation: none !important;
+}
+
+
+#log .meta,
+#log .name,
+#log .message,
+#log>div {
+    position: relative;
+}
+
+#log .meta,
+#log .message {
+    vertical-align: top;
+    display: table-cell;
+    padding-bottom: 0.1em;
+    width: fit-content;
+}
+
+#log .meta {
+    width: auto !important;
+    text-align: left;
+    z-index: 20;
+    padding-right: 0.5em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: visible !important;
+}
+
+#log .badges {
+    display: none;
+}
+
+#log .name {
+    margin-left: 0.2em;
+    transform: translateX(-100%);
+    font-size: 18px;
+    line-height: 28px;
+    padding: 2px 15px;
+    max-width: calc(100% - 60px);
+    background: #ffffff;
+    color: #111111 !important;
+    font-weight: 600;
+    font-family: Orbitron, sans-serif;
+    animation: .5s forwards slideName;
+    display: inline-block;
+    opacity: 0;
+    transform-origin: center;
+    height: 35px;
+    box-sizing: border-box;
+    z-index: 30 !important;
+}
+
+@keyframes slideName {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#log .name:after {
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 35px 35px 0 0;
+    border-color: #ffffff transparent transparent;
+    left: 100%;
+    top: 0;
+}
+
+#log .message {
+    word-wrap: break-word;
+    width: 100%;
+    font-size: 14px;
+    padding: 20px 15px 15px;
+    background: #555555;
+    line-height: 22px;
+    color: #aaaaaa !important;
+    margin-top: -10px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: .8s 1s forwards messageFade;
+    margin-left: 5px;
+    font-family: Lato, sans-serif;
+    font-weight: 300;
+    z-index: 5 !important;
+    display: block !important;
+}
+
+@keyframes messageFade {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#log .message,
+#log .message:after {
+    display: block;
+}
+
+#log .message:after {
+    z-index: -1;
+    left: 1px;
+    top: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background: #111111;
+}
+
+#log .emote {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 0.4em 0.2em;
+    position: relative;
+}
+
+#log .emote img {
+    display: inline-block;
+    height: 1em;
+    opacity: 0;
+}
+
+#log>div.deleted {
+    visibility: hidden;
+}
